@@ -20,8 +20,8 @@ const AboutUs = () => {
   // Company milestones
   const milestones = [
     { year: 2010, achievement: "Company founded" },
-    { year: 2015, achievement: "Expanded to international markets" },
-    { year: 2020, achievement: "Launched groundbreaking product line" },
+    { year: 2015, achievement: "Launched flagship product" },
+    { year: 2020, achievement: "Expanded to international markets" },
     // Add more milestones as needed
   ];
 
