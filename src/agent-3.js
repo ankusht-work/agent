@@ -7,7 +7,7 @@ const AboutUs = () => {
   const companyOverview = {
     mission: "To revolutionize the industry through innovative solutions.",
     vision: "Becoming the global leader in our field by 2030.",
-    values: ["Integrity", "Innovation", "Collaboration", "Excellence"]
+    values: ["Integrity", "Innovation", "Customer-focus", "Sustainability"]
   };
 
   // Team member data
