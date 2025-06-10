@@ -6,7 +6,7 @@ const HomePage = () => {
     <div className="home-page">
       {/* Header */}
       <header>
-        <h1>Site Title</h1>
+        <h1>Our Website</h1>
         <nav>
           <ul>
             <li><a href="#about">About</a></li>
@@ -20,7 +20,7 @@ const HomePage = () => {
       <main>
         {/* Hero Section */}
         <section className="hero">
-          <h2>Welcome to Our Site</h2>
+          <h2>Welcome to Our Website</h2>
           <p>Discover amazing things with us!</p>
           <button>Get Started</button>
         </section>
@@ -28,7 +28,7 @@ const HomePage = () => {
         {/* About Section */}
         <section id="about">
           <h2>About Us</h2>
-          <p>We are a company dedicated to innovation and excellence.</p>
+          <p>We are a company dedicated to providing innovative solutions.</p>
         </section>
 
         {/* Features Section */}
@@ -55,7 +55,7 @@ const HomePage = () => {
 
       {/* Footer */}
       <footer>
-        <p>&copy; 2023 Your Company. All rights reserved.</p>
+        <p>&copy; 2023 Our Website. All rights reserved.</p>
       </footer>
     </div>
   );
