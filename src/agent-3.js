@@ -7,7 +7,7 @@ const AboutUs = () => {
   const companyOverview = {
     mission: "To revolutionize the industry through innovative solutions.",
     vision: "Becoming the global leader in our field by 2030.",
-    values: ["Integrity", "Innovation", "Customer-focus", "Sustainability"]
+    values: ["Integrity", "Innovation", "Collaboration", "Excellence"]
   };
 
   // Team member data
@@ -27,13 +27,11 @@ const AboutUs = () => {
 
   return (
     <main className="about-us">
-      <h1>About Us</h1>
-      
       <section aria-labelledby="company-overview">
-        <h2 id="company-overview">Company Overview</h2>
+        <h1 id="company-overview">About Us</h1>
         <p>Mission: {companyOverview.mission}</p>
         <p>Vision: {companyOverview.vision}</p>
-        <h3>Our Values</h3>
+        <h2>Our Values</h2>
         <ul>
           {companyOverview.values.map((value, index) => (
             <li key={index}>{value}</li>
@@ -55,8 +53,8 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section aria-labelledby="history-milestones">
-        <h2 id="history-milestones">History and Milestones</h2>
+      <section aria-labelledby="company-history">
+        <h2 id="company-history">Our History</h2>
         <ul className="timeline">
           {milestones.map((milestone, index) => (
             <li key={index}>
