@@ -1,64 +1,83 @@
 
-import React from 'react';
+module home_page (
+    input wire clk,
+    input wire reset_n,
+    
+    // Header inputs
+    input wire [7:0] site_title,
+    input wire [7:0] nav_about,
+    input wire [7:0] nav_features,
+    input wire [7:0] nav_contact,
+    
+    // Hero section inputs
+    input wire [31:0] hero_message,
+    input wire [15:0] cta_button_text,
+    
+    // About section inputs
+    input wire [63:0] about_content,
+    
+    // Features section inputs
+    input wire [31:0] feature1,
+    input wire [31:0] feature2,
+    input wire [31:0] feature3,
+    
+    // Contact form inputs
+    input wire [7:0] name_field,
+    input wire [7:0] email_field,
+    input wire [15:0] message_field,
+    input wire submit_button,
+    
+    // Footer input
+    input wire [31:0] copyright_text,
+    
+    // Outputs
+    output reg [7:0] display_output
+);
 
-const HomePage = () => {
-  return (
-    <div className="home-page">
-      {/* Header */}
-      <header>
-        <h1>Our Website</h1>
-        <nav>
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-      </header>
+    // State definitions
+    localparam HEADER = 3'd0;
+    localparam HERO = 3'd1;
+    localparam ABOUT = 3'd2;
+    localparam FEATURES = 3'd3;
+    localparam CONTACT = 3'd4;
+    localparam FOOTER = 3'd5;
 
-      {/* Main Content */}
-      <main>
-        {/* Hero Section */}
-        <section className="hero">
-          <h2>Welcome to Our Website</h2>
-          <p>Discover amazing things with us!</p>
-          <button>Get Started</button>
-        </section>
+    reg [2:0] current_state;
+    reg [2:0] next_state;
 
-        {/* About Section */}
-        <section id="about">
-          <h2>About Us</h2>
-          <p>We are a company dedicated to providing innovative solutions.</p>
-        </section>
+    // State machine
+    always @(posedge clk or negedge reset_n) begin
+        if (!reset_n) begin
+            current_state <= HEADER;
+        end else begin
+            current_state <= next_state;
+        end
+    end
 
-        {/* Features Section */}
-        <section id="features">
-          <h2>Our Features</h2>
-          <ul>
-            <li>Feature 1</li>
-            <li>Feature 2</li>
-            <li>Feature 3</li>
-          </ul>
-        </section>
+    // Next state logic
+    always @(*) begin
+        case (current_state)
+            HEADER: next_state = HERO;
+            HERO: next_state = ABOUT;
+            ABOUT: next_state = FEATURES;
+            FEATURES: next_state = CONTACT;
+            CONTACT: next_state = FOOTER;
+            FOOTER: next_state = HEADER;
+            default: next_state = HEADER;
+        endcase
+    end
 
-        {/* Contact Section */}
-        <section id="contact">
-          <h2>Contact Us</h2>
-          <form>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <textarea placeholder="Message"></textarea>
-            <button type="submit">Send</button>
-          </form>
-        </section>
-      </main>
+    // Output logic
+    always @(posedge clk) begin
+        case (current_state)
+            HEADER: display_output <= site_title;
+            HERO: display_output <= hero_message[7:0];
+            ABOUT: display_output <= about_content[7:0];
+            FEATURES: display_output <= feature1[7:0];
+            CONTACT: display_output <= name_field;
+            FOOTER: display_output <= copyright_text[7:0];
+            default: display_output <= 8'h00;
+        endcase
+    end
 
-      {/* Footer */}
-      <footer>
-        <p>&copy; 2023 Our Website. All rights reserved.</p>
-      </footer>
-    </div>
-  );
-};
-
-export default HomePage;
+endmo
